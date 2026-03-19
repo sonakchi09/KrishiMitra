@@ -2,36 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Global reset & variables only ── */
 :root {
-  --color-primary: #2d6a4f;
-  --color-primary-lt: #40916c;
-  --color-primary-dk: #1b4332;
-  --color-accent: #f4a261;
-  --color-accent-lt: #fde8d0;
-  --color-bg: #f8faf5;
-  --color-surface: #ffffff;
-  --color-border: #d8e8d0;
-  --color-text: #1a2e1a;
-  --color-muted: #6b7c6b;
-  --radius: 12px;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  font-family: 'Segoe UI', system-ui, sans-serif;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: 'Segoe UI', system-ui, sans-serif;
   line-height: 1.6;
 }
