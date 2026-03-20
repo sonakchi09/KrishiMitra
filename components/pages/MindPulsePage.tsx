@@ -23,24 +23,8 @@ function nowStr() {
   })
 }
 
-// ── Gemini API ───────────────────────────────────────────
-async function callGemini(
-  history: { role: string; parts: { text: string }[] }[],
-): Promise<string> {
-  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY
-  if (!apiKey)
-    return 'API key nahi mili. .env mein NEXT_PUBLIC_GEMINI_API_KEY set karo.'
-
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [
-            {
-              text: `You are Mitra — a warm, caring mental wellness companion for rural farmers in Odisha, India.
+// ── Groq API ─────────────────────────────────────────────
+const SYSTEM_PROMPT = `You are Mitra — a warm, caring mental wellness companion for rural farmers in Odisha, India.
 
   PERSONALITY:
   - You are like a trusted elder brother/sister (bhaiya/didi), NOT a clinical therapist
@@ -63,15 +47,37 @@ async function callGemini(
   - Many have never talked to anyone about mental health
   - Your job is to make them feel heard and less alone
 
-  START: Begin with a warm greeting and ask how their day was. Keep it very natural.`,
-            },
-          ],
-        },
-        contents: history,
-        generationConfig: { temperature: 0.88, maxOutputTokens: 300 },
-      }),
+  START: Begin with a warm greeting and ask how their day was. Keep it very natural.`
+
+async function callGroq(
+  history: { role: string; parts: { text: string }[] }[],
+): Promise<string> {
+  const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY
+  if (!apiKey)
+    return 'API key nahi mili. .env mein NEXT_PUBLIC_GROQ_API_KEY set karo.'
+
+  // Convert Gemini-style history to OpenAI-style messages
+  const messages = [
+    { role: 'system', content: SYSTEM_PROMPT },
+    ...history.map((h) => ({
+      role: h.role === 'model' ? 'assistant' : 'user',
+      content: h.parts.map((p) => p.text).join(''),
+    })),
+  ]
+
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
     },
-  )
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages,
+      temperature: 0.88,
+      max_tokens: 300,
+    }),
+  })
 
   if (!res.ok) {
     if (res.status === 429)
@@ -80,7 +86,7 @@ async function callGemini(
   }
   const data = await res.json()
   return (
-    data.candidates?.[0]?.content?.parts?.[0]?.text ??
+    data.choices?.[0]?.message?.content ??
     'Kuch samajh nahi aaya, dobara bolna.'
   )
 }
@@ -282,7 +288,7 @@ export default function MindPulsePage() {
   async function startChat() {
     setStarted(true)
     setLoading(true)
-    const greeting = await callGemini([])
+    const greeting = await callGroq([])
     const id = uid()
     geminiHistory.current = [{ role: 'model', parts: [{ text: greeting }] }]
     addMsg({ id, from: 'bot', type: 'text', text: greeting, time: nowStr() })
@@ -309,7 +315,7 @@ export default function MindPulsePage() {
     ]
 
     setLoading(true)
-    const reply = await callGemini(geminiHistory.current)
+    const reply = await callGroq(geminiHistory.current)
     geminiHistory.current = [
       ...geminiHistory.current,
       { role: 'model', parts: [{ text: reply }] },
@@ -346,7 +352,7 @@ export default function MindPulsePage() {
     ]
 
     setLoading(true)
-    const reply = await callGemini(geminiHistory.current)
+    const reply = await callGroq(geminiHistory.current)
     geminiHistory.current = [
       ...geminiHistory.current,
       { role: 'model', parts: [{ text: reply }] },
