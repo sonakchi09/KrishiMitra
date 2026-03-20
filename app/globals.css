@@ -9,7 +9,7 @@
   --color-primary-dk: #1b4332;
   --color-accent: #f4a261;
   --color-accent-lt: #fde8d0;
-  --color-bg: #f8faf5;
+  --color-bg: #3d5c35;
   --color-surface: #ffffff;
   --color-border: #d8e8d0;
   --color-text: #1a2e1a;
@@ -29,7 +29,11 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background: var(--color-bg);
+  background-color: #3d5c35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 680' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='1200' height='680' fill='%233d5c35'/%3E%3Cpath d='M-80 -60 Q80 -80 300 10 Q440 80 400 240 Q360 380 180 400 Q20 415 -60 300 Q-140 190 -80 -60Z' fill='%232e4828'/%3E%3Cpath d='M980 -30 Q1160 30 1220 180 Q1290 380 1210 530 Q1150 660 960 680 Q800 695 790 555 Q778 415 870 295 Q935 180 980 -30Z' fill='%232e4828'/%3E%3Cpath d='M510 -40 Q620 -62 710 8 Q775 58 730 125 Q688 178 598 168 Q510 158 478 102 Q448 46 510 -40Z' fill='%232e4828'/%3E%3Cpath d='M-60 490 Q55 428 188 462 Q298 494 272 608 Q248 698 88 708 Q-62 718 -82 622 Q-100 535 -60 490Z' fill='%232e4828'/%3E%3Cpath d='M1050 548 Q1145 508 1222 552 Q1285 598 1262 672 Q1238 738 1095 728 Q952 718 962 648 Q972 578 1050 548Z' fill='%232e4828'/%3E%3Cpath d='M155 148 Q238 62 428 88 Q568 110 692 96 Q838 80 918 178 Q988 262 975 398 Q962 510 868 572 Q762 632 595 642 Q410 652 268 606 Q128 560 80 448 Q32 335 72 222 Q102 158 155 148Z' fill='%23ddd5c0'/%3E%3Cpath d='M155 148 Q198 98 262 82 Q328 66 410 76 Q502 90 592 85 Q678 80 758 108 Q840 136 900 198 Q958 258 970 338 Q982 422 956 498 Q928 562 862 598 Q788 632 678 641 Q562 650 448 642 Q334 634 252 604 Q162 572 106 502 Q55 432 58 358 Q62 280 90 218 Q118 165 155 148Z' fill='none' stroke='%231a2a14' stroke-width='2.2' stroke-linecap='round' opacity='0.55'/%3E%3Cellipse cx='596' cy='50' rx='9' ry='7' fill='%231a2a14' opacity='0.8'/%3E%3Cellipse cx='622' cy='35' rx='7' ry='6' fill='%231a2a14' opacity='0.7'/%3E%3Cellipse cx='648' cy='52' rx='8' ry='6' fill='%231a2a14' opacity='0.75'/%3E%3Cellipse cx='609' cy='70' rx='6' ry='5' fill='%231a2a14' opacity='0.6'/%3E%3Cellipse cx='636' cy='72' rx='5' ry='4' fill='%231a2a14' opacity='0.55'/%3E%3Cellipse cx='1075' cy='562' rx='11' ry='9' fill='%231a2a14' opacity='0.8'/%3E%3Cellipse cx='1105' cy='545' rx='8' ry='7' fill='%231a2a14' opacity='0.7'/%3E%3Cellipse cx='1096' cy='582' rx='9' ry='7' fill='%231a2a14' opacity='0.75'/%3E%3Cellipse cx='1128' cy='566' rx='7' ry='6' fill='%231a2a14' opacity='0.65'/%3E%3Cellipse cx='1118' cy='594' rx='10' ry='8' fill='%231a2a14' opacity='0.7'/%3E%3Cellipse cx='1082' cy='604' rx='8' ry='7' fill='%231a2a14' opacity='0.65'/%3E%3Cg stroke='%231a2a14' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1005 10 Q1038 32 1058 68 Q1072 98 1065 132'/%3E%3Cpath d='M1038 32 Q1072 16 1105 22 Q1132 28 1140 52'/%3E%3Cpath d='M1058 68 Q1092 52 1118 60 Q1140 68 1142 90'/%3E%3Cpath d='M1065 108 Q1092 96 1112 104 Q1126 112 1122 128'/%3E%3Cpath d='M1005 10 Q978 -8 958 2 Q942 14 952 36 Q968 52 1005 34 Q1018 22 1005 10Z'/%3E%3Cline x1='1005' y1='10' x2='978' y2='24'/%3E%3Cpath d='M1105 22 Q1116 2 1138 6 Q1156 10 1155 32 Q1152 50 1130 48 Q1108 44 1105 22Z'/%3E%3Cline x1='1105' y1='22' x2='1135' y2='26'/%3E%3Cpath d='M1118 60 Q1134 42 1158 48 Q1174 56 1170 76 Q1165 92 1144 90 Q1120 86 1118 60Z'/%3E%3Cline x1='1118' y1='60' x2='1150' y2='66'/%3E%3Cpath d='M1112 104 Q1130 88 1152 96 Q1166 106 1160 124 Q1152 138 1132 134 Q1110 128 1112 104Z'/%3E%3Cline x1='1112' y1='104' x2='1144' y2='114'/%3E%3Cpath d='M1038 32 Q1026 12 1040 2 Q1054 -6 1068 8 Q1076 24 1060 36 Q1046 44 1038 32Z'/%3E%3Cline x1='1038' y1='32' x2='1056' y2='12'/%3E%3Cpath d='M1058 68 Q1046 50 1060 38 Q1074 30 1086 44 Q1092 58 1076 70 Q1062 76 1058 68Z'/%3E%3Cline x1='1058' y1='68' x2='1075' y2='48'/%3E%3Cpath d='M1140 52 Q1164 40 1182 48 Q1196 56 1192 74'/%3E%3Cpath d='M1164 40 Q1168 20 1186 18 Q1202 16 1204 34 Q1202 52 1185 52 Q1168 52 1164 40Z'/%3E%3Cline x1='1164' y1='40' x2='1186' y2='32'/%3E%3Cpath d='M1192 74 Q1200 56 1215 58 Q1226 62 1222 78 Q1218 90 1204 88 Q1190 84 1192 74Z'/%3E%3Cline x1='1192' y1='74' x2='1216' y2='70'/%3E%3C/g%3E%3Cg stroke='%231a2a14' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 668 Q52 638 76 600 Q100 562 102 522'/%3E%3Cpath d='M52 638 Q26 618 10 596 Q-2 576 6 554'/%3E%3Cpath d='M76 600 Q50 582 40 560 Q32 540 42 522'/%3E%3Cpath d='M102 522 Q78 506 72 484 Q68 466 80 450'/%3E%3Cpath d='M6 554 Q-16 536 -18 516 Q-18 496 2 492 Q22 490 26 512 Q28 532 6 554Z'/%3E%3Cline x1='6' y1='554' x2='4' y2='522'/%3E%3Cpath d='M40 560 Q20 540 22 520 Q26 500 46 500 Q64 500 66 520 Q66 542 40 560Z'/%3E%3Cline x1='40' y1='560' x2='44' y2='528'/%3E%3Cpath d='M72 484 Q58 462 64 444 Q70 428 90 428 Q108 430 108 450 Q106 470 72 484Z'/%3E%3Cline x1='72' y1='484' x2='90' y2='452'/%3E%3Cpath d='M26 618 Q4 605 0 583 Q-2 562 16 558 Q36 556 40 576 Q44 596 26 618Z'/%3E%3Cline x1='26' y1='618' x2='18' y2='582'/%3E%3Cpath d='M52 638 Q36 618 42 600 Q48 582 68 582 Q84 586 82 604 Q78 622 52 638Z'/%3E%3Cline x1='52' y1='638' x2='64' y2='604'/%3E%3Cpath d='M22 668 Q-8 652 -22 628 Q-34 604 -18 582'/%3E%3Cpath d='M-22 628 Q-44 616 -50 598 Q-56 580 -40 566'/%3E%3Cpath d='M-40 566 Q-58 555 -62 538 Q-64 522 -48 516'/%3E%3Cpath d='M-18 582 Q-10 562 4 558 Q18 555 22 570 Q24 584 10 592 Q-4 598 -18 582Z'/%3E%3Cline x1='-18' y1='582' x2='6' y2='566'/%3E%3Cpath d='M-48 516 Q-54 496 -40 488 Q-26 482 -16 496 Q-8 510 -22 522 Q-36 530 -48 516Z'/%3E%3Cline x1='-48' y1='516' x2='-26' y2='496'/%3E%3Cpath d='M-50 598 Q-66 586 -68 568 Q-68 550 -52 546 Q-36 544 -32 562 Q-28 580 -50 598Z'/%3E%3Cline x1='-50' y1='598' x2='-50' y2='566'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: 'Segoe UI', system-ui, sans-serif;
   line-height: 1.6;
@@ -384,7 +388,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: linear-gradient(135deg, #eafaf0 0%, #f8faf5 60%, #fde8d0 100%);
+  background: transparent;
 }
 .auth__card {
   background: var(--color-surface);
