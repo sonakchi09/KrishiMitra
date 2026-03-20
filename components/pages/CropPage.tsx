@@ -2,8 +2,6 @@
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 
-const ML_BASE = 'https://krishimitra-ml-knuh.onrender.com'
-
 type Top3Item = { class: string; confidence: number }
 
 type CropResult = {
@@ -23,13 +21,11 @@ const SEVERITY_COLOR: Record<string, string> = {
   moderate: '#d97706',
   high: '#dc2626',
 }
-
 const SEVERITY_BG: Record<string, string> = {
   low: '#ecfdf5',
   moderate: '#fffbeb',
   high: '#fef2f2',
 }
-
 const SEVERITY_BORDER: Record<string, string> = {
   low: '#6ee7b7',
   moderate: '#fcd34d',
@@ -53,7 +49,7 @@ export default function CropPage() {
       const fd = new FormData()
       fd.append('file', file)
 
-      const res = await fetch(`${ML_BASE}/crop/diagnose`, {
+      const res = await fetch('/api/crop', {
         method: 'POST',
         body: fd,
       })
@@ -97,30 +93,28 @@ export default function CropPage() {
         .page__title { font-size: 1.9rem; font-weight: 800; color: #1b4332; margin-bottom: 0.4rem; }
         .page__desc { color: #6b7c6b; font-size: 0.95rem; margin-bottom: 2rem; }
 
-        /* Upload card */
         .card { background: #ffffff; border: 1px solid #d8e8d0; border-radius: 18px; padding: 1.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
         .dropzone { border: 2px dashed #a8d5b5; border-radius: 12px; padding: 2rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; background: #f7fcf9; }
         .dropzone:hover { background: #edf7f1; border-color: #4caf82; }
         .dropzone__icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
         .dropzone__label { font-size: 0.95rem; color: #3a6b50; font-weight: 600; margin-bottom: 0.25rem; }
         .dropzone__sub { font-size: 0.8rem; color: #8aab95; }
+
         .preview-wrap { margin-top: 1rem; border-radius: 10px; overflow: hidden; max-height: 220px; display: flex; justify-content: center; background: #f0f0f0; }
         .preview-wrap img { max-height: 220px; object-fit: contain; width: 100%; }
 
-        /* Loading */
         .loader { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: #3a6b50; font-size: 0.9rem; font-weight: 600; }
         .spinner { width: 22px; height: 22px; border: 3px solid #d8e8d0; border-top-color: #2d6a4f; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Error */
         .error-box { margin-top: 1.25rem; background: #fff5f5; border: 1px solid #fca5a5; border-radius: 10px; padding: 1rem 1.25rem; color: #b91c1c; font-size: 0.9rem; }
 
-        /* Result */
         .result { margin-top: 1.5rem; border-radius: 14px; overflow: hidden; border: 1px solid #b7dfc6; }
         .result__header { background: #1b4332; padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
         .result__name { font-size: 1.1rem; font-weight: 800; color: #fff; }
         .result__odia { font-size: 0.95rem; color: #a7f3c8; font-weight: 500; }
-        .result__conf { font-size: 0.8rem; background: rgba(255,255,255,0.15); color: #fff; border-radius: 20px; padding: 0.2rem 0.65rem; font-weight: 600; }
+        .result__conf { font-size: 0.8rem; background: rgba(255,255,255,0.15); color: #fff; border-radius: 20px; padding: 0.2rem 0.65rem; font-weight: 600; white-space: nowrap; }
 
         .result__body { background: #f7fcf9; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; }
 
@@ -128,7 +122,7 @@ export default function CropPage() {
         .badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 700; border-radius: 20px; padding: 0.25rem 0.75rem; border: 1px solid; }
 
         .section-label { font-size: 0.75rem; font-weight: 700; color: #1b4332; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
-        .advice-box { background: #fff; border: 1px solid #d8e8d0; border-radius: 10px; padding: 0.85rem 1rem; font-size: 1rem; color: #1a2e1a; line-height: 1.6; }
+        .info-box { background: #fff; border: 1px solid #d8e8d0; border-radius: 10px; padding: 0.85rem 1rem; font-size: 1rem; color: #1a2e1a; line-height: 1.6; }
 
         .top3 { display: flex; flex-direction: column; gap: 0.4rem; }
         .top3-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: #3a6b50; }
@@ -152,7 +146,6 @@ export default function CropPage() {
         </p>
 
         <div className="card">
-          {/* Drop zone */}
           <div
             className="dropzone"
             onClick={() => fileRef.current?.click()}
@@ -176,14 +169,12 @@ export default function CropPage() {
             />
           </div>
 
-          {/* Image preview */}
           {preview && (
             <div className="preview-wrap">
               <img src={preview} alt="Uploaded crop" />
             </div>
           )}
 
-          {/* Loading */}
           {loading && (
             <div className="loader">
               <div className="spinner" />
@@ -191,10 +182,8 @@ export default function CropPage() {
             </div>
           )}
 
-          {/* Error */}
           {error && <div className="error-box">⚠️ {error}</div>}
 
-          {/* Result */}
           {result && !loading && (
             <div className="result">
               <div className="result__header">
@@ -212,7 +201,6 @@ export default function CropPage() {
               </div>
 
               <div className="result__body">
-                {/* Badges */}
                 <div className="badge-row">
                   <span
                     className="badge"
@@ -222,9 +210,7 @@ export default function CropPage() {
                       borderColor: sevBorder,
                     }}
                   >
-                    🌡 Severity:{' '}
-                    {result.severity.charAt(0).toUpperCase() +
-                      result.severity.slice(1)}
+                    🌡 Severity: {sev.charAt(0).toUpperCase() + sev.slice(1)}
                   </span>
                   {result.see_vet && (
                     <span
@@ -240,7 +226,6 @@ export default function CropPage() {
                   )}
                 </div>
 
-                {/* Warnings */}
                 {result.low_confidence && (
                   <div className="low-conf-note">
                     ⚠️{' '}
@@ -260,13 +245,11 @@ export default function CropPage() {
                   </div>
                 )}
 
-                {/* Advice */}
                 <div>
                   <div className="section-label">Treatment Advice (ଓଡ଼ିଆ)</div>
-                  <div className="advice-box">{result.advice_odia}</div>
+                  <div className="info-box">{result.advice_odia}</div>
                 </div>
 
-                {/* Top 3 */}
                 {result.top3?.length > 0 && (
                   <div>
                     <div className="section-label">Other Possibilities</div>

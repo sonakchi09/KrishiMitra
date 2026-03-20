@@ -2,8 +2,6 @@
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 
-const ML_BASE = 'https://krishimitra-ml-knuh.onrender.com'
-
 type LivestockResult = {
   status: string
   predicted_class: string
@@ -49,7 +47,7 @@ export default function LivestockPage() {
       const fd = new FormData()
       fd.append('file', file)
 
-      const res = await fetch(`${ML_BASE}/livestock/diagnose`, {
+      const res = await fetch('/api/livestock', {
         method: 'POST',
         body: fd,
       })
@@ -139,7 +137,6 @@ export default function LivestockPage() {
         </p>
 
         <div className="card">
-          {/* Drop zone */}
           <div
             className="dropzone"
             onClick={() => fileRef.current?.click()}
@@ -163,14 +160,12 @@ export default function LivestockPage() {
             />
           </div>
 
-          {/* Preview */}
           {preview && (
             <div className="preview-wrap">
               <img src={preview} alt="Uploaded animal" />
             </div>
           )}
 
-          {/* Loading */}
           {loading && (
             <div className="loader">
               <div className="spinner" />
@@ -178,10 +173,8 @@ export default function LivestockPage() {
             </div>
           )}
 
-          {/* Error */}
           {error && <div className="error-box">⚠️ {error}</div>}
 
-          {/* Result */}
           {result && !loading && (
             <div className="result">
               <div className="result__header">
@@ -197,7 +190,6 @@ export default function LivestockPage() {
               </div>
 
               <div className="result__body">
-                {/* Badges */}
                 <div className="badge-row">
                   <span
                     className="badge"
@@ -223,7 +215,6 @@ export default function LivestockPage() {
                   )}
                 </div>
 
-                {/* Urgent vet warning */}
                 {result.see_vet_urgently && (
                   <div className="vet-warning">
                     🚨{' '}
@@ -234,7 +225,6 @@ export default function LivestockPage() {
                   </div>
                 )}
 
-                {/* Low confidence */}
                 {result.low_confidence && (
                   <div className="low-conf-note">
                     ⚠️{' '}
@@ -245,13 +235,11 @@ export default function LivestockPage() {
                   </div>
                 )}
 
-                {/* Advice */}
                 <div>
                   <div className="section-label">Treatment Advice (ଓଡ଼ିଆ)</div>
                   <div className="info-box">{result.advice_odia}</div>
                 </div>
 
-                {/* Home remedy */}
                 {result.home_remedy && (
                   <div>
                     <div className="section-label">
